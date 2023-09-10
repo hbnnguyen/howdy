@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         Int           @id @unique @default(autoincrement())
+  username   String        @unique
+  email      String        @unique
+  password   String        @default("")
+  name       String        @default("")
+  location   String        @default("")
+  bio        String        @default("")
+  createdAt  DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt  DateTime      @updatedAt @db.Timestamptz(3)
+  imageKey   String        @default("defaultProfilePic.jpg")
+  usersLiked LikeDislike[] @relation("UsersLiked")
+  likedBy    LikeDislike[] @relation("LikedBy")
+  chats      Chat[]        @relation("Chats")
+  messages   Message[]     @relation("Messages")
+}
+
+model UserEmail {
+  email String @id @unique
+}
+
+model Username {
+  username String @id @unique
+}
+
+model LikeDislike {
+  fromUser   User     @relation("UsersLiked", fields: [fromUserId], references: [id])
+  toUser     User     @relation("LikedBy", fields: [toUserId], references: [id])
+  fromUserId Int
+  toUserId   Int
+  timestamp  DateTime @default(now()) @db.Timestamptz(3)
+  liked      Boolean
+
+  @@id([fromUserId, toUserId])
+}
+
+model Chat {
+  id          Int       @id @unique @default(autoincrement())
+  users       User[]    @relation("Chats")
+  messages    Message[]
+  lastUpdated DateTime  @default(now()) @db.Timestamptz(3)
+}
+
+model Message {
+  author    User     @relation("Messages", fields: [authorId], references: [id])
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  authorId  Int
+  chatId    Int
+  contents  String
+  timestamp DateTime @default(now()) @db.Timestamptz(3)
+
+  @@id([chatId, authorId])
+}
+
+// model Tag {
+//   tag    String  @id @unique
+//   type   TagType
+// }
+
+// enum TagType {
+//   hobby
+//   interest
+// }
