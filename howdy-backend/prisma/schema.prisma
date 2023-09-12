@@ -20,7 +20,7 @@ model User {
   bio        String        @default("")
   createdAt  DateTime      @default(now()) @db.Timestamptz(3)
   updatedAt  DateTime      @updatedAt @db.Timestamptz(3)
-  imageKey   String        @default("defaultProfilePic.jpg")
+  imageKey   String        @default("defaultPfp.jpg")
   usersLiked LikeDislike[] @relation("UsersLiked")
   likedBy    LikeDislike[] @relation("LikedBy")
   chats      Chat[]        @relation("Chats")
