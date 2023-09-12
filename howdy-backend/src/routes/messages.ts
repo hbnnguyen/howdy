@@ -24,7 +24,7 @@ router.get("/:id", ensureCorrectUser, async function (req, res, next) {
     }
   });
 
-  const messages = chat.messages;
+  const messages = chat?.messages;
 
   return res.json({ messages: messages });
 });
