@@ -8,7 +8,7 @@
   "main": "build/index",
   "scripts": {
     "start": "nodemon",
-    "build": "rm -r ./build && tsc",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brian Voter and Hannah Nguyen",
