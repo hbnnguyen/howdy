@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { ProfilePicData, User, UserFormData, UserLoginData } from "./user";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8082";
 
 /** API Class.
  *
