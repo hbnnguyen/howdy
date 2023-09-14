@@ -13,7 +13,7 @@ export class FriendlyApi {
   static token?: string;
 
   static async request(endpoint: string, data = {}, method = "get") {
-    const url = `${BASE_URL}/${endpoint}`;
+    const url = `${BASE_URL}/v1/${endpoint}`;
     const headers = { Authorization: `Bearer ${FriendlyApi.token}` };
     const params = (method === "get")
       ? data
