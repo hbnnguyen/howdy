@@ -1,17 +1,17 @@
-import 'express-async-errors';
+// import 'express-async-errors';
 
 import express from 'express';
 import multer from 'multer';
-import { prisma } from '../app';
-import { UploadController } from '../s3/bucketController';
-import { ensureCorrectUser, ensureLoggedIn } from '../middleware/auth';
-import { NotFoundError } from '../expressError';
-import { UserOutput, userToUserOutput } from '../user';
+import { prisma } from '../../app';
+import { UploadController } from '../../s3/bucketController';
+import { ensureCorrectUser, ensureLoggedIn } from '../../middleware/auth';
+import { NotFoundError } from '../../expressError';
+import { UserOutput, userToUserOutput } from '../../user';
 
 const router = express.Router();
 
 //upload file to s3
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/tmp/' });
 
 router.post("/uploadProfilePic", ensureLoggedIn, upload.single('image'), UploadController.Upload);
 

@@ -6,8 +6,8 @@ import config from "../config";
 export class UploadController {
 
     static s3 = new S3({
-        accessKeyId: config.access_key_id_aws,
-        secretAccessKey: config.secret_access_key_aws,
+        accessKeyId: config.access_key_id,
+        secretAccessKey: config.secret_access_key,
     });
 
     static async Upload(req: Request, res: any) {

@@ -1,9 +1,9 @@
-import 'express-async-errors';
+// import 'express-async-errors';
 
 import express from 'express';
-import { prisma } from '../app';
-import { ensureLoggedIn } from '../middleware/auth';
-import { BadRequestError } from '../expressError';
+import { prisma } from '../../app';
+import { ensureLoggedIn } from '../../middleware/auth';
+import { BadRequestError } from '../../expressError';
 const router = express.Router();
 
 //create likedislike

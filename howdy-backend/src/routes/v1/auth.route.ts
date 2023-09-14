@@ -1,21 +1,21 @@
 /** Routes for authentication. */
-import 'express-async-errors';
+// import 'express-async-errors';
 
 import jsonschema from "jsonschema";
 
 import express from 'express';
 // import multer from 'multer';
-import { prisma } from '../app';
+import { prisma } from '../../app';
 
 // import { UploadController } from '../s3/bucketController';
 
-import userAuthSchema from '../schemas/userAuth.json';
-import userRegisterSchema from '../schemas/userRegister.json';
-import { BadRequestError, UnauthorizedError, NotFoundError } from "../expressError";
-import { createToken } from "../helpers/tokens";
+import userAuthSchema from '../../schemas/userAuth.json'
+import userRegisterSchema from '../../schemas/userRegister.json';
+import { BadRequestError, UnauthorizedError, NotFoundError } from "../../expressError";
+import { createToken } from "../../helpers/tokens";
 import bcrypt from "bcrypt";
-import config from "../config";
-import { authenticateUser } from "../user";
+import config from "../../config";
+import { authenticateUser } from "../../user";
 
 const router = express.Router();
 
